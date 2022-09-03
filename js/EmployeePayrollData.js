@@ -1,5 +1,8 @@
 class EmployeePayrollData {
-   
+    /**
+     * setter and getter methods
+     * validating the user inputs using regular expression
+     */
 //getter and setter method
 get(id) {return this._id;}
 set id(id){
@@ -41,8 +44,15 @@ set note(note){
 
 get startDate(){ return this._startDate;}
 set startDate(startDate){
-    this._startDate = startDate;
+    let now = new Date();
+        now = Date.parse(now);
+        if ( startDate > now ) {
+            throw 'Start Date is Future date!';
+        } else {
+            this._startDate = startDate;
+        }
 }
+
 
 //method
 toString(){
@@ -51,6 +61,6 @@ toString(){
                     this.startDate.toLocaleDateString("en-US", options);
     return "id=" + this.id + ", name='" + this.name + ", gender='" + this.gender +
             ", profilePic='" + this.profilePic + ", department=" +this.department +
-            ", salary=" + this.salary + ", startDate=" + empDate + ", note=" + this.note;
+            ", salary=" + this.salary + ", startDate=" + this._startDate+ ", note=" + this.note;
 }
 }
